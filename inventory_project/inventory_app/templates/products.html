@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block title %} Products {% endblock %}
+
+{% block content %} 
+
+
+<h1 class="mt-6 text-center text-3xl font-semibold">Products</h1>
+<div class="flex justify-center mt-10">
+<table class="lg:w-4/5 w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-lg mx-1">
+    <thead class="text-xs text-gray-500 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="lg:px-6 py-3">
+                Product name
+            </th>
+            <th scope="col" class="lg:px-6 py-3">
+                Quantity
+            </th>
+            <th scope="col" class="lg:px-6 py-3">
+                Supplier
+            </th>
+            <th scope="col" class="lg:px-6 py-3">
+                Price
+            </th>
+            <th scope="col" class="lg:px-6 py-3">
+                SKU
+            </th>
+            <th scope="col" class="lg:px-6 py-3">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prod in products %}
+        <tr>
+            <td scope="col" class="lg:px-6 py-3">
+                {{prod.name}}
+            </td>
+            <td scope="col" class="lg:px-6 py-3">
+                {{ prod.quantity }}
+            </td>
+            <td scope="col" class="lg:px-6 py-3">
+                {{prod.supplier}}
+            </td>
+            <td scope="col" class="lg:px-6 py-3">
+                {{prod.price}}
+            </td>
+            <td scope="col" class="lg:px-6 py-3">
+                {{prod.sku}}
+            </td>
+            <td scope="col" class="lg:px-6 py-2">
+                <div class="flex lg:flex-row flex-col">
+                <a href="{% url 'update_product' prod.product_id %}" class="py-2 px-4 border text-gray-500 border-gray-800 rounded-lg hover:bg-blue-800 hover:text-white transition duration-300">
+                    Update
+                </a>
+                <a href="{% url 'delete_product' prod.product_id %}" class="lg:ml-5 py-2 px-4 border text-gray-500 border-gray-800 rounded-lg hover:bg-red-800 hover:text-white transition duration-300">
+                    Delete
+                </a>
+            </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<footer  class="mt-10 bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+    <div class="flex lg:flex-row lg:justify-between flex-col justify-center items-center w-full">
+    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a href="{% url 'home' %}">Inventory System™</a> | All Rights Reserved.
+    </span>
+    <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+        <li>
+            <a href="{% url 'contact' %}" class="mr-4 hover:text-blue-600 md:mr-6">Contact</a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}" class="hover:text-red-600">Logout</a>
+        </li>
+    </ul>
+  </div>
+  </footer>
+
+
+{% endblock %} 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Inventory System {% endblock %}</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- <nav class="w-full h-fit border-b-2 border-black">
+        <a href="{% url 'home' %}" class="text-emerald-400 font-semibold text-2xl ml-5 py-5">
+            Inventory System
+        </a>
+    </nav> -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+          <a href="{% url 'home' %}" class="text-white text-2xl font-bold lg:ml-5">Inventory System</a>
+          <div class="block lg:hidden">
+            <button id="menu-btn" class="text-white focus:outline-none">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="hidden lg:flex lg:items-center lg:space-x-4 mr-5" id="menu">
+            <a href="{% url 'create_product'%}" class="text-white border border-white hover:bg-white hover:text-gray-800 py-1 px-2 rounded-md">Add Product</a>
+            <a href="{% url 'products' %}" class="text-white border border-white hover:bg-white hover:text-gray-800 py-1 px-2 rounded-md">All Products</a>
+            <p class="text-lg font-semibold text-white">{{request.user.username}}</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center space-y-2 mt-4 hidden" id="mobile-menu">
+          <a href="{% url 'create_product'%}" class="text-white border border-white hover:bg-white hover:text-gray-800 py-1 px-2 rounded-md">Add Product</a>
+          <a href="{% url 'products' %}" class="text-white border border-white hover:bg-white hover:text-gray-800 py-1 px-2 rounded-md">All Products</a>
+          <p class="text-lg font-semibold text-white">{{request.user.username}}</p>
+        </div>
+      </nav>
+
+      <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    
+    
+    <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+  
+      menuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    </script>
+    
+    
+</body>
+</html>

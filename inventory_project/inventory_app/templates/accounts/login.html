@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+<!-- {% load tailwind_filters %} -->
+
+{% block title %} Login {% endblock %}
+
+{% block content %} 
+<h1 class="mt-6 text-center text-3xl font-semibold">Login to your Account</h1>
+<form method="POST" class="my-10 lg:mx-80 mx-20 bg-gray-200 p-10 rounded-xl">
+    {% csrf_token %}
+    <!-- {{ form|crispy }} -->
+    <input type="hidden" name="next" value="{{ next }}"> 
+    <div class="font-bold text-gray-700"> 
+        <label for="username">Username*</label>  
+    </div>
+    <div class="my-2">
+        <input class="w-full p-2 rounded-lg" type="text" name="username" id="username" required> 
+    </div>
+    <div class="font-bold text-gray-700"> 
+        <label for="password">Password*</label>  
+    </div>
+    <div class="my-2">
+        <input class="w-full p-2 rounded-lg" type="password" name="password" id="password" required>  
+    </div>
+    <div class="mt-10 flex justify-center">
+    <button type="submit" class="py-2 px-6 border text-gray-800 border-gray-800 rounded-lg hover:bg-gray-800 hover:text-white transition duration-300">
+        Login
+    </button>
+    </div>
+
+</form>
+{% if error %}
+<p class="text-center text-red-600 font-bold text-2xl">{{error}}</p>
+{% endif %}
+<div>
+    <p class="text-center font-semibold text-lg mb-5">Don't have an account? <a href="{% url 'register' %}" class="font-bold hover:text-blue-600"> Register </a></p>
+</div>
+
+{% endblock %}
